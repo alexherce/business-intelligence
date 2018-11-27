@@ -36,6 +36,7 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
