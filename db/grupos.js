@@ -139,7 +139,7 @@ exports.getId = function(id, done) {
 }
 
 exports.getQuery = function(param, id, done) {
-  if (id && param == 'id_profesor' || param == 'nombre' || param == "apellido_paterno" || param == "apellido_materno" || param == "email") {
+  if (id && param == 'id_profesor' || param == 'nombre' || param == "apellido_paterno" || param == "apellido_materno" || param == "email" || param == 'nivel' || param == 'grado' || param == 'grupo' || param == 'año_escolar') {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
