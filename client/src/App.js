@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import ListaAlumnos from './components/lista_alumnos.js';
+
 class App extends Component {
   // Initialize state
   state = { passwords: [] }
@@ -56,6 +58,9 @@ class App extends Component {
             </button>
           </div>
         )}
+
+        
+        <ListaAlumnos/>
       </div>
     );
   }
