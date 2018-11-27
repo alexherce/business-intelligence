@@ -2,41 +2,41 @@ const mysql = require('mysql');
 const async = require('async');
 
 // MySQL setup for multiple database connections
-exports.MODE_PRODUCTION = 'mode_production'
+exports.MODE_PRODUCTION = 'mode_production';
 
 var state = {
   pool: null,
   mode: null,
-}
+};
 
 // Database settings
-var PRODUCTION_DB = 'database_name'
+var PRODUCTION_DB = 'bi_live';
 
 exports.connect = function(mode, done) {
   if (mode === exports.MODE_PRODUCTION) {
-    state.pool = mysql.createPoolCluster()
+    state.pool = mysql.createPoolCluster();
 
     state.pool.add('WRITE', {
-      host: '35.196.92.58',
-      user: 'usr',
-      password: 'database_password',
+      host: '138.197.214.161',
+      user: 'bi_usr',
+      password: 'BMY_sMz9V&MP4aJF',
       database: PRODUCTION_DB
-    })
+    });
 
     state.pool.add('READ1', {
-      host: '35.196.92.58',
-      user: 'usr2',
-      password: 'database_password',
+      host: '138.197.214.161',
+      user: 'bi_usr_read1',
+      password: 'BMY_sMz9V&MP4aJF',
       database: PRODUCTION_DB
-    })
+    });
   }
 
-  state.mode = mode
-  done()
+  state.mode = mode;
+  done();
 }
 
-exports.READ = 'read'
-exports.WRITE = 'write'
+exports.READ = 'read';
+exports.WRITE = 'write';
 
 // Do not change this functions
 exports.get = function(type, done) {

@@ -1,4 +1,4 @@
-var db = require('./mysql.js')
+var db = require('./mysql.js');
 
 // Methods to get and set data in the MySQL DB.
 
