@@ -139,34 +139,78 @@ exports.login = function(email, password, done) {
       }
     });
   });
+}
 
-  exports.getId = function(userId, done) {
-    if (userId) {
-      db.get(db.READ, function(err, connection) {
-        if (err) return abort(connection, done, err);
+exports.getAll = function(done) {
+  db.get(db.READ, function(err, connection) {
+    if (err) return abort(connection, done, err);
 
-        connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado WHERE id_empleado = ?", [userId], function (err, result) {
-          connection.release();
-          if (err) return done(err);
+    connection.query("SELECT id_empleado, email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado", function (err, result) {
+      connection.release();
+      if (err) return done(err);
 
-          if(result.length == 1) {
-            return done(null, {
-              success: true,
-              id_empleado: result[0].id_empleado,
-              email: result[0].email,
-              nombre: result[0].nombre,
-              apellido_paterno: result[0].apellido_paterno,
-              apellido_materno: result[0].apellido_materno,
-              area: result[0].area,
-              telefono: result[0].telefono
-            });
-          } else {
-            return done("Usuario no encontrado.");
-          }
+      if(result.length > 0) {
+        return done(null, {
+          success: true,
+          empleados: result
         });
+      } else {
+        return done("Empleados no encontrados");
+      }
+    });
+  });
+}
+
+exports.getId = function(userId, done) {
+  if (userId) {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado WHERE id_empleado = ?", [userId], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length == 1) {
+          return done(null, {
+            success: true,
+            id_empleado: result[0].id_empleado,
+            email: result[0].email,
+            nombre: result[0].nombre,
+            apellido_paterno: result[0].apellido_paterno,
+            apellido_materno: result[0].apellido_materno,
+            area: result[0].area,
+            telefono: result[0].telefono
+          });
+        } else {
+          return done("Usuario no encontrado.");
+        }
       });
-    } else {
-      return done("Falta parámetro: id de empleado.");
-    }
+    });
+  } else {
+    return done("Falta parámetro: id de empleado.");
+  }
+}
+
+exports.getQuery = function(param, id, done) {
+  if (id && param == 'nombre' || param == 'apellido_materno' || param == "apellido_paterno" || param == "email" || param == "area") {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado WHERE " + param + " = ?", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length > 0) {
+          return done(null, {
+            success: true,
+            empleados: result
+          });
+        } else {
+          return done("Empleados no encontrados");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro o es incorrecto");
   }
 }
