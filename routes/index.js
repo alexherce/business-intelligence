@@ -7,6 +7,7 @@ const estudiantesController = require('../controllers/estudiantes');
 const gruposController = require('../controllers/grupos');
 const materiasController = require('../controllers/materias');
 const boletasController = require('../controllers/boletas');
+const aplicacionesController = require('../controllers/aplicacion_talleres');
 
 function loggedInEmpleado(req, res, next) {
   if (!req.session.id_empleado || !req.session.id) {
@@ -113,6 +114,10 @@ router.get('/grupos/list', loggedInEmpleado, function(req, res, next) {
   gruposController.getTodosGrupos(req, res);
 });
 
+router.get('/grupos/profesor', loggedInEmpleado, function(req, res, next) {
+  gruposController.getMine(req, res);
+});
+
 router.get('/grupos/query/:param/:id', loggedInEmpleado, function(req, res, next) {
   gruposController.getGruposQuery(req, res);
 });
@@ -122,6 +127,22 @@ router.post('/materias/crear', loggedInEmpleado, function(req, res, next) {
   materiasController.create(req, res);
 });
 
+router.get('/materias/detalle/:id', loggedInEmpleado, function(req, res, next) {
+  materiasController.getMateria(req, res);
+});
+
+router.get('/materias/list', loggedInEmpleado, function(req, res, next) {
+  materiasController.getTodasMaterias(req, res);
+});
+
+router.get('/materias/profesor', loggedInEmpleado, function(req, res, next) {
+  materiasController.getMine(req, res);
+});
+
+router.get('/materias/query/:param/:id', loggedInEmpleado, function(req, res, next) {
+  materiasController.getMateriasQuery(req, res);
+});
+
 // BOLETAS
 router.post('/boletas/crear', loggedInEmpleado, function(req, res, next) {
   boletasController.create(req, res);
@@ -129,6 +150,39 @@ router.post('/boletas/crear', loggedInEmpleado, function(req, res, next) {
 
 router.get('/boletas/consultar/:year', loggedInEstudiante, function(req, res, next) {
   boletasController.getBoletaEstudiante(req, res);
+});
+
+router.get('/boletas/estudiante/:year/:id', loggedInEmpleado, function(req, res, next) {
+  boletasController.getBoleta(req, res);
+});
+
+router.get('/boletas/list', loggedInEmpleado, function(req, res, next) {
+  boletasController.getTodasBoletas(req, res);
+});
+
+router.get('/boletas/query/:param/:id', loggedInEmpleado, function(req, res, next) {
+  boletasController.getBoletasQuery(req, res);
+});
+
+router.get('/boletas/profesor', loggedInEmpleado, function(req, res, next) {
+  boletasController.getBoletasMine(req, res);
+});
+
+// APLICACION TALLERES
+router.post('/aplicacion_talleres/crear', loggedInEstudiante, function(req, res, next) {
+  aplicacionesController.create(req, res);
+});
+
+router.get('/aplicacion_talleres/detalle/:id', loggedInEmpleado, function(req, res, next) {
+  aplicacionesController.getAplicacion(req, res);
+});
+
+router.get('/aplicacion_talleres/list', loggedInEmpleado, function(req, res, next) {
+  aplicacionesController.getTodasAplicaciones(req, res);
+});
+
+router.get('/aplicacion_talleres/estudiante', loggedInEstudiante, function(req, res, next) {
+  aplicacionesController.getMine(req, res);
 });
 
 module.exports = router;

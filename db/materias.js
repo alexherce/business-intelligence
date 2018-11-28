@@ -80,3 +80,111 @@ exports.create = function(params, done) {
     });
   });
 };
+
+exports.getId = function(id, done) {
+  if (id) {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT m.id_materia, m.nombre AS materia, m.hora_inicio, m.hora_fin, m.id_profesor, m.id_grupo, p.nombre, p.apellido_paterno, p.apellido_materno, g.nivel, g.grado, g.grupo, g.año_escolar FROM materia AS m JOIN empleado AS p ON m.id_profesor = p.id_empleado JOIN grupo AS g ON m.id_grupo = g.id_grupo WHERE m.id_materia = ?", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length == 1) {
+          return done(null, {
+            success: true,
+            id_materia: result[0].id_materia,
+            materia: result[0].materia,
+            hora_inicio: result[0].hora_inicio,
+            hora_fin: result[0].hora_fin,
+            profesor: {
+              id_empleado: result[0].id_profesor,
+              nombre: result[0].nombre,
+              apellido_paterno: result[0].apellido_paterno,
+              apellido_materno: result[0].apellido_materno
+            },
+            grupo: {
+              id_grupo: result[0].id_grupo,
+              nivel: result[0].nivel,
+              grado: result[0].grado,
+              grupo: result[0].grupo,
+              año_escolar: result[0].año_escolar
+            }
+          });
+        } else {
+          return done("Materia no encontrada");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro: id de materia");
+  }
+}
+
+exports.getQuery = function(param, id, done) {
+  if (id && param == 'hora_inicio' || param == 'hora_fin' || param == "año_escolar" || param == "nivel" || param == "grado" || param == 'grupo' || param == 'id_empleado') {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT m.id_materia, m.nombre AS materia, m.hora_inicio, m.hora_fin, m.id_profesor, m.id_grupo, p.nombre, p.apellido_paterno, p.apellido_materno, g.nivel, g.grado, g.grupo, g.año_escolar FROM materia AS m JOIN empleado AS p ON m.id_profesor = p.id_empleado JOIN grupo AS g ON m.id_grupo = g.id_grupo WHERE " + param + " = ?", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length > 0) {
+          return done(null, {
+            success: true,
+            materias: result
+          });
+        } else {
+          return done("Materias no encontradas");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro o es incorrecto");
+  }
+}
+
+exports.getAll = function(done) {
+  db.get(db.READ, function(err, connection) {
+    if (err) return abort(connection, done, err);
+
+    connection.query("SELECT m.id_materia, m.nombre AS materia, m.hora_inicio, m.hora_fin, m.id_profesor, m.id_grupo, p.nombre, p.apellido_paterno, p.apellido_materno, g.nivel, g.grado, g.grupo, g.año_escolar FROM materia AS m JOIN empleado AS p ON m.id_profesor = p.id_empleado JOIN grupo AS g ON m.id_grupo = g.id_grupo", function (err, result) {
+      connection.release();
+      if (err) return done(err);
+
+      if(result.length > 0) {
+        return done(null, {
+          success: true,
+          materias: result
+        });
+      } else {
+        return done("Materias no encontradas");
+      }
+    });
+  });
+}
+
+exports.getMine = function(id, done) {
+  if (id) {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT m.id_materia, m.nombre AS materia, m.hora_inicio, m.hora_fin, m.id_profesor, m.id_grupo, p.nombre, p.apellido_paterno, p.apellido_materno, g.nivel, g.grado, g.grupo, g.año_escolar FROM materia AS m JOIN empleado AS p ON m.id_profesor = p.id_empleado JOIN grupo AS g ON m.id_grupo = g.id_grupo WHERE m.id_profesor = ?", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length > 0) {
+          return done(null, {
+            success: true,
+            materias: result
+          });
+        } else {
+          return done("Materias no encontradas");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro: id de profesor");
+  }
+}
