@@ -1,0 +1,16 @@
+.alumnoName {
+    margin-top: 20px;
+    text-align: center;
+    color: #5bc0de;
+}
+
+.tableDiv {
+    width: 100vw;
+    height: auto;
+    text-align: center;
+}
+
+.float-right {
+    margin-top: 20px;
+    margin-right: 70px;
+}

@@ -1,0 +1,23 @@
+.containerTaller {
+    margin-top: 20px;
+    height: auto;
+    width: 100vw;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #5bc0de;
+}
+
+.itemTalleres {
+    width: 60%;
+    text-align: center;
+    align-self: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+.marginTop {
+    margin-top: 20px;
+}
