@@ -66,7 +66,7 @@ export default class ListaMaterias extends Component {
   TableDisplay = () => {
     return(
       <div>
-        <center><a class="btn btn-success margenes" href="/admin/alumnos/materias/nuevo/">Agregar Materia</a></center>
+        <center><a class="btn btn-success margenes" href="/admin/alumnos/materias/nueva/">Agregar Materia</a></center>
         <br/>
         <table class="table">
           <thead>
