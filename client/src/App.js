@@ -16,6 +16,7 @@ import MenuContabilidad from './components/menuContabilidad.js';
 import RegistroAlumno from './components/registro.js';
 import ListaGrupos from './components/listaGrupos.js';
 import DetalleGrupo from './components/detalleGrupo.js';
+import LoginAdmin from './components/login_admin.js';
 
 class App extends Component {
   // Initialize state
@@ -38,6 +39,7 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
                 <Route exact path="/admin/contabilidad" component={MenuContabilidad}/>
+                <Route exact path="/admin/login" component={LoginAdmin}/>
                 <Route exact path="/admin" component={MenuAdmin}/>
 
                 //ALUMNOS
@@ -45,7 +47,7 @@ class App extends Component {
                 <Route exact path="/alumnos/calificaciones" component={CalificacionesAlumno}/>
                 <Route exact path="/alumnos/estado_cuenta" component={EstadoCuenta}/>
                 <Route exact path="/alumnos/aplicar_taller" component={AplicacionTalleres}/>
-                <Route exact path="/alumnos" component={Menu}/>
+                <Route exact path="/" component={Menu}/>
                 <Route component={NoMatch} />
             </Switch>
           </div>
