@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './navigation.css';
 
 
-export default class NavigationBar extends Component {
+export default class NavigationAdmin extends Component {
   constructor(props) {
     super(props);
 
@@ -34,18 +34,15 @@ export default class NavigationBar extends Component {
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <a class="navbar-brand" href="/alumnos">Colegio Hispano Americano Octavio Paz</a>
+              <a class="navbar-brand" href="/admin">Colegio Hispano Americano Octavio Paz</a>
 
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/alumnos/calificaciones">Calificaciones</a>
+                        <a class="nav-link" href="/admin/alumnos">Alumnos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/alumnos/estado_cuenta">Estado de cuenta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/alumnos/aplicar_taller">Aplicar a taller</a>
+                        <a class="nav-link" href="/admin/contabilidad">Contabilidad</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
