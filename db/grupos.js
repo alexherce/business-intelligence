@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const db = require('./mysql.js');
