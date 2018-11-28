@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './calificaciones.css';
 
-import NavigationBar from './navigation.js';
+import NavigationAdmin from './navigationAdmin.js';
 import CalificacionesItemAdmin from './calificaciones_item_admin.js';
 
 export default class CalificacionesAdmin extends Component {
@@ -109,7 +109,7 @@ export default class CalificacionesAdmin extends Component {
   render() {
     return (
       <div>
-        <NavigationBar/>
+        <NavigationAdmin/>
         <h2 className="alumnoName">Calificaciones de alumno: {this.props.match.params.id}</h2>
         <br/>
         <this.RenderContent/>
