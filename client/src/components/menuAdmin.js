@@ -8,8 +8,34 @@ export default class MenuAdmin extends Component {
     super(props);
 
     this.state = {
-      alumnos: [],
+      infoEstudiante: {
+        nombre: '',
+        apellido_paterno: ''
+      },
     };
+  }
+
+  componentDidMount() {
+    this.isLoggedIn();
+  }
+
+  isLoggedIn = () => {
+    fetch('/api/sesion/empleado')
+    .then(res => res.json())
+    .then((res) => {
+      if (res) {
+        if (!res.success) return this.props.history.push("/admin/login");
+
+        this.setState({ infoEmpleado: res.infoEmpleado }, () => {
+          console.log(this.state);
+        });
+      } else {
+        this.props.history.push("/admin/login");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   render() {
@@ -17,7 +43,7 @@ export default class MenuAdmin extends Component {
       <div>
         <NavigationAdmin/>
         <br/>
-        <h2 className="text-center">Bienvenido Admin</h2>
+        <h2 className="text-center">Bienvenido <small class="text-muted">{this.state.infoEmpleado.nombre} {this.state.infoEmpleado.apellido_paterno}</small></h2>
 
         <div class="elementos">
           <div class="itemfullMenuAlumnos">

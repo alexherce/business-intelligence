@@ -17,7 +17,7 @@ export default class LoginAdmin extends Component {
   }
 
   isLoggedIn = () => {
-    fetch('/api/sesion/empleado')
+    fetch('https://bi.herce.co/api/sesion/empleado')
     .then(res => res.json())
     .then((res) => {
       if (res) {
@@ -37,7 +37,7 @@ export default class LoginAdmin extends Component {
 
     this.setState({ loading: true });
 
-    fetch('/api/empleados/login', {
+    fetch('https://bi.herce.co/api/empleados/login', {
       method: 'post',
       headers: new Headers({'Content-Type': 'application/json'}),
       body: JSON.stringify({

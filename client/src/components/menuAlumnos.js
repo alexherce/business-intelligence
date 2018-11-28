@@ -12,6 +12,29 @@ export default class MenuAlumnos extends Component {
     };
   }
 
+  componentDidMount() {
+    this.isLoggedIn();
+  }
+
+  isLoggedIn = () => {
+    fetch('/api/sesion/empleado')
+    .then(res => res.json())
+    .then((res) => {
+      if (res) {
+        if (!res.success) return this.props.history.push("/admin/login");
+
+        this.setState({ infoEmpleado: res.infoEmpleado }, () => {
+          console.log(this.state);
+        });
+      } else {
+        this.props.history.push("/admin/login");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
       <div>
