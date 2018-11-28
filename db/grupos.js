@@ -106,7 +106,7 @@ exports.getId = function(id, done) {
         if (err) return abort(connection, done, err);
 
         if(result.length == 1) {
-          connection.query("SELECT e.nombre, e.apellido_paterno, e.apellido_materno, e.id_estudiante FROM estudiante AS e JOIN estudiante_grupo AS eg ON eg.id_estudiante = e.id_estudiante WHERE eg.id_grupo = ?", [id], function (err, result_estudiantes) {
+          connection.query("SELECT e.curp, e.nombre, e.apellido_paterno, e.apellido_materno, e.id_estudiante FROM estudiante AS e JOIN estudiante_grupo AS eg ON eg.id_estudiante = e.id_estudiante WHERE eg.id_grupo = ?", [id], function (err, result_estudiantes) {
             connection.release();
             if (err) return done(err);
 
