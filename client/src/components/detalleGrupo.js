@@ -47,7 +47,7 @@ export default class DetalleGrupo extends Component {
     .then((res) => {
       if (!res.success) return this.setState({ loading: false, error: true, message: res.error});
 
-      this.setState({ loading: false, success: true, estudiantes: res.estudiantes });
+      this.setState({ loading: false, success: true, estudiantes: res.estudiantes, grupo: res });
     })
     .catch((error) => {
       console.log(error);
@@ -101,12 +101,11 @@ export default class DetalleGrupo extends Component {
   }
 
   render() {
-    var nombre = "Lista de grupos";
     return (
       <div>
         <NavigationAdmin/>
 
-        <h2 class="alumnoName" >{nombre}</h2>
+        <h2 class="alumnoName" >Detalles del Grupo: {this.props.match.params.id}</h2>
         <br/>
         <div class="containerCuenta">
           <this.RenderContent/>

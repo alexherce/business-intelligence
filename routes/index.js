@@ -152,6 +152,10 @@ router.get('/boletas/consultar/:year', loggedInEstudiante, function(req, res, ne
   boletasController.getBoletaEstudiante(req, res);
 });
 
+router.get('/boletas/id/:id', loggedInEmpleado, function(req, res, next) {
+  boletasController.getBoletasEstudiante(req, res);
+});
+
 router.get('/boletas/estudiante/:year/:id', loggedInEmpleado, function(req, res, next) {
   boletasController.getBoleta(req, res);
 });
