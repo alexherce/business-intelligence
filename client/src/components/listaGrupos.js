@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './calificaciones.css';
 
 import NavigationAdmin from './navigationAdmin.js';
-import GrupoItem from './calificaciones_item.js';
+import GrupoItem from './grupo_item.js';
 
 export default class ListaGrupos extends Component {
   constructor(props) {
