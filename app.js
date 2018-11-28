@@ -32,8 +32,7 @@ app.use(session({
   secret: 'YL!a:9CN/?TZF?$s)zZc7~mAH)<MgmUz2tA%L<zSM=Sa7s/b]7BR^En%!y!dtrGNRpc5g<Y94[=&>%KnWzj;"rVe4xh_b[RzYb:MS{Sz)~:+*AH>dj~Wa8$',
   name: 'id',
   resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000 }
+  saveUninitialized: false
 }));
 
 // Serve static files from the React app

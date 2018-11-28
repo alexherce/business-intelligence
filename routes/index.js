@@ -5,6 +5,8 @@ const generatePassword = require('password-generator');
 const empleadosController = require('../controllers/empleados');
 const estudiantesController = require('../controllers/estudiantes');
 const gruposController = require('../controllers/grupos');
+const materiasController = require('../controllers/materias');
+const boletasController = require('../controllers/boletas');
 
 function loggedInEmpleado(req, res, next) {
   if (!req.session.id_empleado || !req.session.id) {
@@ -103,6 +105,20 @@ router.get('/grupos/list', loggedInEmpleado, function(req, res, next) {
 
 router.get('/grupos/query/:param/:id', loggedInEmpleado, function(req, res, next) {
   gruposController.getGruposQuery(req, res);
+});
+
+// MATERIAS
+router.post('/materias/crear', loggedInEmpleado, function(req, res, next) {
+  materiasController.create(req, res);
+});
+
+// BOLETAS
+router.post('/boletas/crear', loggedInEmpleado, function(req, res, next) {
+  boletasController.create(req, res);
+});
+
+router.get('/boletas/consultar/:year', loggedInEstudiante, function(req, res, next) {
+  boletasController.getBoletaEstudiante(req, res);
 });
 
 module.exports = router;
