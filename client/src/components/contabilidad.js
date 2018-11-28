@@ -13,18 +13,39 @@ export default class Contabilidad extends Component {
   }
 
   render() {
-        var balanceGeneral = 0.00;
+        var ingresos = 170000.70;
+        var egresos = 10100.98;
+        var balanceGeneral = ingresos-egresos;
     return (
-        <div>
-            <NavigationAdmin/>
+      <div class="all">
+      <NavigationAdmin/>
+      <div class="container margins">
 
-            <h2 class="alumnoName" >Contabilidad</h2>
+        <div class="row justify-content-around">
+          <div class="col-4 box">
+            <h2 class="buttonBalance">Ingresos</h2>
+            <h5>{ingresos}</h5>
+            <input class="inputA" placeholder="Cantidad.."/>
             <br/>
-              
-            <div class="container">
-
-            </div>
+            <a class="btn btn-outline-light buttonMargin">Aceptar</a>
+          </div>
+          <div class="col-4 box">
+            <h2 class="buttonBalance">Egresos</h2>
+            <h5>{egresos}</h5>
+            <input class="inputA" placeholder="Cantidad.."/>
+            <br/>
+            <a class="btn btn-outline-light buttonMargin">Aceptar</a>
+          </div>
         </div>
+        <div class="row justify-content-around">
+          <div class="col-4 boxAlt margins">
+            <h4 class="buttonBalanceA" >Balance general</h4>
+            <h2>{balanceGeneral}</h2>
+          </div>
+
+        </div>
+        </div>
+      </div>
     );
   }
 }
