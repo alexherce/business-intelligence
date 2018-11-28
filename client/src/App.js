@@ -18,6 +18,8 @@ import RegistroAlumno from './components/registro.js';
 import RegistroEmpleado from './components/registroEmpleado.js';
 import ListaGrupos from './components/listaGrupos.js';
 import ListaEmpleados from './components/listaEmpleados.js';
+import DetalleEmpleado from './components/detalleEmpleado.js';
+import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
 import LoginAdmin from './components/login_admin.js';
 
@@ -38,9 +40,12 @@ class App extends Component {
             <Switch>
                 //ADMIN
                 <Route exact path="/admin/alumnos/grupos/detalle" component={DetalleGrupo}/>
+                <Route exact path="/admin/alumnos/grupos/agregar" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
+
+                <Route exact path="/admin/empleados/lista/detalle" component={DetalleEmpleado}/>
                 <Route exact path="/admin/empleados/lista" component={ListaEmpleados}/>
                 <Route exact path="/admin/empleados/registro" component={RegistroEmpleado}/>
                 <Route exact path="/admin/empleados" component={MenuEmpleados}/>
