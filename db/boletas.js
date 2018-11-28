@@ -105,7 +105,7 @@ exports.getBoletas = function(userId, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT b.id_materia, m.nombre AS materia, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones, m.id_profesor FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre WHERE b.id_estudiante = ? GROUP BY b.id_materia", [userId], function (err, result) {
+      connection.query("SELECT b.id_materia, m.nombre AS materia, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones, m.id_profesor, t.año FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre WHERE b.id_estudiante = ? GROUP BY b.id_materia, t.año", [userId], function (err, result) {
         connection.release();
         if (err) return done(err);
 
