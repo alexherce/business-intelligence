@@ -66,6 +66,8 @@ export default class ListaGrupos extends Component {
   TableDisplay = () => {
     return(
       <div>
+        <center><a class="btn btn-success margenes" href="/admin/alumnos/grupos/nuevo/">Agregar Grupo</a></center>
+        <br/>
         <table class="table">
           <thead>
             <tr>

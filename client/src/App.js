@@ -25,6 +25,7 @@ import DetalleEmpleado from './components/detalleEmpleado.js';
 import DetalleAlumno from './components/detalleAlumno.js';
 import DetalleMateria from './components/detalleMateria.js';
 import RegistroMateria from './components/registroMateria.js';
+import RegistroGrupo from './components/registroGrupo.js';
 import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
 import LoginAdmin from './components/login_admin.js';
@@ -54,6 +55,7 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/calificaciones/nuevo/:id" component={RegistroCalificacion}/>
                 <Route exact path="/admin/alumnos/grupos/agregar/:id" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
+                <Route exact path="/admin/alumnos/grupos/nuevo" component={RegistroGrupo}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
                 <Route exact path="/admin/alumnos/lista" component={ListaAlumnos}/>
