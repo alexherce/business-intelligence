@@ -12,13 +12,13 @@ export default class NavigationAdmin extends Component {
   }
 
   handleLogout = () => {
-    fetch('/api/estudiantes/logout', {
+    fetch('/api/empleados/logout', {
       method: 'post',
       headers: new Headers({'Content-Type': 'application/json'})
     })
     .then(res => res.json())
     .then((res) => {
-      if (res.success) return this.props.history.push("/alumnos/login");
+      if (res.success) return this.props.history.push("/admin/login");
 
       alert(res.error);
     })

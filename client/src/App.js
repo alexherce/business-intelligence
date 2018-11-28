@@ -49,7 +49,7 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
 
-                <Route exact path="/admin/empleados/lista/detalle" component={DetalleEmpleado}/>
+                <Route exact path="/admin/empleados/lista/detalle/:id" component={DetalleEmpleado}/>
                 <Route exact path="/admin/empleados/lista" component={ListaEmpleados}/>
                 <Route exact path="/admin/empleados/registro" component={RegistroEmpleado}/>
                 <Route exact path="/admin/empleados" component={MenuEmpleados}/>
