@@ -41,7 +41,7 @@ class App extends Component {
             <Switch>
                 //ADMIN
                 <Route exact path="/admin/alumnos/grupos/detalle/estadoCuenta" component={EstadoCuentaAdmin}/>
-                <Route exact path="/admin/alumnos/grupos/detalle" component={DetalleGrupo}/>
+                <Route exact path="/admin/alumnos/grupos/detalle/:id" component={DetalleGrupo}/>
                 <Route exact path="/admin/alumnos/grupos/agregar" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
