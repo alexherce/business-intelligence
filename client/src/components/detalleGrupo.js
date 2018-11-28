@@ -38,8 +38,8 @@ export default class DetalleGrupo extends Component {
                       <td>González</td>
                       <td>Herce</td>
                       <td>
-                        <button type="button" class="btn btn-success margenes" href="/admin/alumnos/grupos/detalle">Calificaciones</button>
-                        <button type="button" class="btn btn-info margenes" href="/admin/alumnos/grupos/agregar">Estado de cuenta</button>
+                        <a class="btn btn-success margenes" href="/admin/alumnos/grupos/detalle">Calificaciones</a>
+                        <a class="btn btn-info margenes" href="/admin/alumnos/grupos/detalle/estadoCuenta">Estado de cuenta</a>
                       </td>
                     </tr>
                     <tr>
@@ -48,8 +48,8 @@ export default class DetalleGrupo extends Component {
                       <td>Armendariz</td>
                       <td>Rios</td>
                       <td>
-                      <button type="button" class="btn btn-success margenes" href="/admin/alumnos/grupos/detalle">Calificaciones</button>
-                      <button type="button" class="btn btn-info margenes" href="/admin/alumnos/grupos/agregar">Estado de cuenta</button>
+                      <a class="btn btn-success margenes" href="/admin/alumnos/grupos/detalle">Calificaciones</a>
+                      <a class="btn btn-info margenes" href="/admin/alumnos/grupos/detalle/estadoCuenta">Estado de cuenta</a>
                       </td>
                     </tr>
                     </tbody>

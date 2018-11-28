@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/login.js';
 import Menu from './components/menu.js';
 import CalificacionesAlumno from './components/calificaciones.js';
-import EstadoCuenta from './components/estadoCuenta.js';
+import EstadoCuentaAlumno from './components/estadoCuenta.js';
 import AplicacionTalleres from './components/talleres.js';
 import NoMatch from './components/nomatch.js';
 
@@ -15,6 +15,7 @@ import MenuAlumnos from './components/menuAlumnos.js';
 import MenuEmpleados from './components/menuEmpleados.js';
 import MenuContabilidad from './components/menuContabilidad.js';
 import RegistroAlumno from './components/registro.js';
+import EstadoCuentaAdmin from './components/estadoCuentaAdmin.js';
 import RegistroEmpleado from './components/registroEmpleado.js';
 import ListaGrupos from './components/listaGrupos.js';
 import ListaEmpleados from './components/listaEmpleados.js';
@@ -39,6 +40,7 @@ class App extends Component {
           <div>
             <Switch>
                 //ADMIN
+                <Route exact path="/admin/alumnos/grupos/detalle/estadoCuenta" component={EstadoCuentaAdmin}/>
                 <Route exact path="/admin/alumnos/grupos/detalle" component={DetalleGrupo}/>
                 <Route exact path="/admin/alumnos/grupos/agregar" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
@@ -56,7 +58,7 @@ class App extends Component {
                 //ALUMNOS
                 <Route exact path="/alumnos/login" component={Login}/>
                 <Route exact path="/alumnos/calificaciones" component={CalificacionesAlumno}/>
-                <Route exact path="/alumnos/estado_cuenta" component={EstadoCuenta}/>
+                <Route exact path="/alumnos/estado_cuenta" component={EstadoCuentaAlumno}/>
                 <Route exact path="/alumnos/aplicar_taller" component={AplicacionTalleres}/>
                 <Route exact path="/" component={Menu}/>
                 <Route component={NoMatch} />
