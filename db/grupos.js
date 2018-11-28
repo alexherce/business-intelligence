@@ -142,7 +142,7 @@ exports.getQuery = function(param, id, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT g.nivel, g.grado, g.grupo, g.año_escolar, g.id_profesor, p.nombre, p.apellido_paterno, p.apellido_materno, p.email FROM grupo AS g INNER JOIN empleado AS p ON g.id_profesor = p.id_empleado WHERE " + param + " = ?", [id], function (err, result) {
+      connection.query("SELECT g.id_grupo, g.nivel, g.grado, g.grupo, g.año_escolar, g.id_profesor, p.nombre, p.apellido_paterno, p.apellido_materno, p.email FROM grupo AS g INNER JOIN empleado AS p ON g.id_profesor = p.id_empleado WHERE " + param + " = ?", [id], function (err, result) {
         connection.release();
         if (err) return done(err);
 
@@ -165,7 +165,7 @@ exports.getAll = function(done) {
   db.get(db.READ, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("SELECT g.nivel, g.grado, g.grupo, g.año_escolar, g.id_profesor, p.nombre, p.apellido_paterno, p.apellido_materno, p.email FROM grupo AS g INNER JOIN empleado AS p ON g.id_profesor = p.id_empleado", function (err, result) {
+    connection.query("SELECT g.id_grupo, g.nivel, g.grado, g.grupo, g.año_escolar, g.id_profesor, p.nombre, p.apellido_paterno, p.apellido_materno, p.email FROM grupo AS g INNER JOIN empleado AS p ON g.id_profesor = p.id_empleado", function (err, result) {
       connection.release();
       if (err) return done(err);
 
@@ -179,4 +179,28 @@ exports.getAll = function(done) {
       }
     });
   });
+}
+
+exports.getMine = function(id, done) {
+  if (id) {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT g.id_grupo, g.nivel, g.grado, g.grupo, g.año_escolar, g.id_profesor, p.nombre, p.apellido_paterno, p.apellido_materno, p.email FROM grupo AS g INNER JOIN empleado AS p ON g.id_profesor = p.id_empleado WHERE g.id_profesor = ?", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length > 0) {
+          return done(null, {
+            success: true,
+            grupos: result
+          });
+        } else {
+          return done("Grupos no encontrados");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro: id de profesor");
+  }
 }

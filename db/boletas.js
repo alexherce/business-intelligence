@@ -81,7 +81,7 @@ exports.getBoletaEstudiante = function(year, userId, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT b.id_materia, m.nombre AS materia, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre WHERE t.año = ? AND b.id_estudiante = ? GROUP BY b.id_materia", [year, userId], function (err, result) {
+      connection.query("SELECT b.id_materia, m.nombre AS materia, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones, m.id_profesor FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre WHERE t.año = ? AND b.id_estudiante = ? GROUP BY b.id_materia", [year, userId], function (err, result) {
         connection.release();
         if (err) return done(err);
 
@@ -97,5 +97,49 @@ exports.getBoletaEstudiante = function(year, userId, done) {
     });
   } else {
     return done("Falta parámetro: id de estudiante o año");
+  }
+}
+
+exports.getAll = function(done) {
+  db.get(db.READ, function(err, connection) {
+    if (err) return abort(connection, done, err);
+
+    connection.query("SELECT b.id_materia, e.nombre, e.apellido_paterno, e.apellido_materno, m.nombre AS materia, b.id_estudiante, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones, t.año, m.id_profesor FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre JOIN estudiante AS e ON b.id_estudiante = e.id_estudiante GROUP BY b.id_estudiante, b.id_materia, t.año", function (err, result) {
+      connection.release();
+      if (err) return done(err);
+
+      if(result.length > 0) {
+        return done(null, {
+          success: true,
+          boletas: result
+        });
+      } else {
+        return done("Boletas no encontradas");
+      }
+    });
+  });
+}
+
+exports.getQuery = function(param, id, done) {
+  if (id && param == 'año' || param == 'numero' || param == "id_profesor") {
+    db.get(db.READ, function(err, connection) {
+      if (err) return abort(connection, done, err);
+
+      connection.query("SELECT b.id_materia, e.nombre, e.apellido_paterno, e.apellido_materno, m.nombre AS materia, b.id_estudiante, JSON_OBJECTAGG(t.numero, b.calificacion) AS calificaciones, t.año, m.id_profesor FROM boleta AS b JOIN materia AS m ON b.id_materia = m.id_materia JOIN trimestre AS t ON b.id_trimestre = t.id_trimestre JOIN estudiante AS e ON b.id_estudiante = e.id_estudiante WHERE " + param + " = ? GROUP BY b.id_estudiante, b.id_materia, t.año", [id], function (err, result) {
+        connection.release();
+        if (err) return done(err);
+
+        if(result.length > 0) {
+          return done(null, {
+            success: true,
+            boletas: result
+          });
+        } else {
+          return done("Boletas no encontradas");
+        }
+      });
+    });
+  } else {
+    return done("Falta parámetro o es incorrecto");
   }
 }

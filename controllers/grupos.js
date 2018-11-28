@@ -58,3 +58,13 @@ exports.getGruposQuery = function(req, res) {
     }
   });
 }
+
+exports.getMine = function(req, res) {
+  grupos.getMine(req.session.id_empleado, function(err, data) {
+    if (err) {
+      res.status(400).send({success: false, error: err});
+    } else {
+      res.status(200).send(data);
+    }
+  });
+}
