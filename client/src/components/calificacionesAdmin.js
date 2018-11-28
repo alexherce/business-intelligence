@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './calificaciones.css';
 
 import NavigationBar from './navigation.js';
-import CalificacionesItem from './calificaciones_item.js';
+import CalificacionesItemAdmin from './calificaciones_item_admin.js';
 
 export default class CalificacionesAdmin extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class CalificacionesAdmin extends Component {
       if (!res.success) return this.setState({ loading: false, error: true, message: res.error});
       console.log(res);
 
-      this.setState({ calificaciones: res.boletas, loading: false });
+      this.setState({ calificaciones: res.calificaciones, loading: false });
     })
     .catch((error) => {
       console.log(error);
@@ -76,6 +76,7 @@ export default class CalificacionesAdmin extends Component {
           <thead>
             <tr>
               <th scope = "col" > Materia </th>
+              <th scope = "col" > Año Escolar </th>
               <th scope = "col" > 1er trimestre </th>
               <th scope = "col" > 2do trimestre </th>
               <th scope = "col" > 3ro trimestre </th>
@@ -84,7 +85,7 @@ export default class CalificacionesAdmin extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.calificaciones.map((item:string,i:number)=><CalificacionesItem item={item} califs={JSON.parse(item.calificaciones)} key={i}/>)}
+            {this.state.calificaciones.map((item:string,i:number)=><CalificacionesItemAdmin item={item} califs={JSON.parse(item.calificaciones)} key={i}/>)}
           </tbody>
         </table>
       </div>

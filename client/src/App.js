@@ -23,6 +23,7 @@ import DetalleEmpleado from './components/detalleEmpleado.js';
 import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
 import LoginAdmin from './components/login_admin.js';
+import CalificacionesAdmin from './components/calificacionesAdmin.js';
 
 class App extends Component {
   // Initialize state
@@ -42,6 +43,7 @@ class App extends Component {
                 //ADMIN
                 <Route exact path="/admin/alumnos/grupos/detalle/estadoCuenta" component={EstadoCuentaAdmin}/>
                 <Route exact path="/admin/alumnos/grupos/detalle/:id" component={DetalleGrupo}/>
+                <Route exact path="/admin/alumnos/calificaciones/detalle/:id" component={CalificacionesAdmin}/>
                 <Route exact path="/admin/alumnos/grupos/agregar" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
