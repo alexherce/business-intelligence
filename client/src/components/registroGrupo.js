@@ -42,7 +42,7 @@ export default class RegistroGrupo extends Component {
       method: 'post',
       headers: new Headers({'Content-Type': 'application/json'}),
       body: JSON.stringify({
-        "nivel": event.target.nombre.value,
+        "nivel": event.target.nivel.value,
         "grado": event.target.grado.value,
         "grupo": event.target.grupo.value,
         "id_profesor": event.target.id_profesor.value,
