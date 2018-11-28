@@ -24,11 +24,11 @@ export default class CalificacionesAdmin extends Component {
   }
 
   isLoggedIn = () => {
-    fetch('/api/sesion/alumno')
+    fetch('/api/sesion/empleado')
     .then(res => res.json())
     .then((res) => {
       if (res) {
-        if (!res.success) return this.props.history.push("/alumnos/login");
+        if (!res.success) return this.props.history.push("/admin/login");
 
         this.setState({ infoEstudiante: res.infoEstudiante }, () => {
           console.log(this.state);
@@ -36,7 +36,7 @@ export default class CalificacionesAdmin extends Component {
           this.getCalificaciones();
         });
       } else {
-        this.props.history.push("/alumnos/login");
+        this.props.history.push("/admin/login");
       }
     })
     .catch((error) => {
@@ -110,7 +110,7 @@ export default class CalificacionesAdmin extends Component {
     return (
       <div>
         <NavigationBar/>
-        <h2 className="alumnoName">{this.state.infoEstudiante.nombre} {this.state.infoEstudiante.apellido_paterno}</h2>
+        <h2 className="alumnoName">Calificaciones de {this.state.infoEstudiante.nombre} {this.state.infoEstudiante.apellido_paterno}</h2>
         <br/>
         <this.RenderContent/>
       </div>
