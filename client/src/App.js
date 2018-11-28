@@ -20,8 +20,10 @@ import RegistroEmpleado from './components/registroEmpleado.js';
 import ListaGrupos from './components/listaGrupos.js';
 import ListaEmpleados from './components/listaEmpleados.js';
 import ListaAlumnos from './components/listaAlumnos.js';
+import ListaMaterias from './components/listaMaterias.js';
 import DetalleEmpleado from './components/detalleEmpleado.js';
 import DetalleAlumno from './components/detalleAlumno.js';
+import DetalleMateria from './components/detalleMateria.js';
 import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
 import LoginAdmin from './components/login_admin.js';
@@ -55,6 +57,9 @@ class App extends Component {
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
                 <Route exact path="/admin/alumnos/lista" component={ListaAlumnos}/>
                 <Route exact path="/admin/alumnos/lista/detalle/:id" component={DetalleAlumno}/>
+                <Route exact path="/admin/alumnos/materias" component={ListaMaterias}/>
+                <Route exact path="/admin/alumnos/materias/detalle/:id" component={DetalleMateria}/>
+                
                 <Route exact path="/admin/contabilidad" component={Contabilidad}/>
 
                 <Route exact path="/admin/empleados/lista/detalle/:id" component={DetalleEmpleado}/>

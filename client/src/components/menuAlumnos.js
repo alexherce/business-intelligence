@@ -62,8 +62,8 @@ export default class MenuAlumnos extends Component {
           <div class="itemfullMenuAlumnos">
             <div class="item">
               <h3>Lista de materias</h3>
-              <p>Aquí podras registrar a un nuevo alumno</p>
-              <a href="/admin/alumnos/registro" class="btn btn-outline-light">Ir</a>
+              <p>Aquí podras ver y agregar materias</p>
+              <a href="/admin/alumnos/materias" class="btn btn-outline-light">Ir</a>
             </div>
           </div>
 
