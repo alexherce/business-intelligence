@@ -4,7 +4,8 @@ export default class CalificacionesItemAdmin extends Component {
   render() {
     return (
       <tr>
-        <th scope="row">{this.props.item.materia}</th>
+        <th scope="row">{this.props.item.id_materia}</th>
+        <td > {this.props.item.materia} </td>
         <td > {this.props.item.año} </td>
         <td > {this.props.califs['1']} </td>
         <td > {this.props.califs['2']} </td>

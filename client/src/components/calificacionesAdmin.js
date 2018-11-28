@@ -75,6 +75,7 @@ export default class CalificacionesAdmin extends Component {
         <table className="table tableDiv">
           <thead>
             <tr>
+              <th scope = "col" > ID Materia </th>
               <th scope = "col" > Materia </th>
               <th scope = "col" > Año Escolar </th>
               <th scope = "col" > 1er trimestre </th>
