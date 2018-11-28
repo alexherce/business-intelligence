@@ -75,10 +75,26 @@ exports.create = function(params, done) {
     return done('Parámetro requerido: telefono');
   }
 
+  if (params.posicion && !validator.isEmpty(params.posicion)) {
+    if (!validator.isAlpha(params.posicion)) return done('La posicion debe contener solo letras');
+    if (!validator.isLength(params.posicion, {min: 2, max: 32})) return done('La posicion debe tener entre 2 y 30 caracteres');
+    values.push(params.posicion.toUpperCase());
+  } else {
+    return done('Parámetro requerido: posicion');
+  }
+
+  if (params.salario && !validator.isEmpty(params.salario)) {
+    if (!validator.isLength(params.salario, {min: 4, max: 7})) return done('El salario debe tener de 4 a 7 digitos');
+    if (!validator.isInt(params.salario, { min: 10000, max: 9999999, allow_leading_zeroes: false })) return done('El salario debe ser un numero válido');
+    values.push(params.salario);
+  } else {
+    return done('Parámetro requerido: salario');
+  }
+
   db.get(db.WRITE, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("INSERT INTO empleado (email, password, nombre, apellido_paterno, apellido_materno, area, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)", values, function (err, result) {
+    connection.query("INSERT INTO empleado (email, password, nombre, apellido_paterno, apellido_materno, area, telefono, posicion, salario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", values, function (err, result) {
       connection.release();
       if (err && err.code == 'ER_DUP_ENTRY') {
         return done("El email ya está registrado");
@@ -145,7 +161,7 @@ exports.getAll = function(done) {
   db.get(db.READ, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("SELECT id_empleado, email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado", function (err, result) {
+    connection.query("SELECT id_empleado, email, nombre, apellido_paterno, apellido_materno, area, telefono, posicion FROM empleado", function (err, result) {
       connection.release();
       if (err) return done(err);
 
@@ -166,7 +182,7 @@ exports.getId = function(userId, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado WHERE id_empleado = ?", [userId], function (err, result) {
+      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono, posicion, salario FROM empleado WHERE id_empleado = ?", [userId], function (err, result) {
         connection.release();
         if (err) return done(err);
 
@@ -179,7 +195,9 @@ exports.getId = function(userId, done) {
             apellido_paterno: result[0].apellido_paterno,
             apellido_materno: result[0].apellido_materno,
             area: result[0].area,
-            telefono: result[0].telefono
+            telefono: result[0].telefono,
+            posicion: result[0].posicion,
+            salario: result[0].salario
           });
         } else {
           return done("Usuario no encontrado.");
@@ -192,11 +210,11 @@ exports.getId = function(userId, done) {
 }
 
 exports.getQuery = function(param, id, done) {
-  if (id && param == 'nombre' || param == 'apellido_materno' || param == "apellido_paterno" || param == "email" || param == "area") {
+  if (id && param == 'nombre' || param == 'apellido_materno' || param == "apellido_paterno" || param == "email" || param == "area" || param == "posicion"  || param == "salario") {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono FROM empleado WHERE " + param + " = ?", [id], function (err, result) {
+      connection.query("SELECT email, nombre, apellido_paterno, apellido_materno, area, telefono, posicion FROM empleado WHERE " + param + " = ?", [id], function (err, result) {
         connection.release();
         if (err) return done(err);
 
