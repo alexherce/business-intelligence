@@ -12,9 +12,12 @@ import NoMatch from './components/nomatch.js';
 // ADMIN components
 import MenuAdmin from './components/menuAdmin.js';
 import MenuAlumnos from './components/menuAlumnos.js';
+import MenuEmpleados from './components/menuEmpleados.js';
 import MenuContabilidad from './components/menuContabilidad.js';
 import RegistroAlumno from './components/registro.js';
+import RegistroEmpleado from './components/registroEmpleado.js';
 import ListaGrupos from './components/listaGrupos.js';
+import ListaEmpleados from './components/listaEmpleados.js';
 import DetalleGrupo from './components/detalleGrupo.js';
 import LoginAdmin from './components/login_admin.js';
 
@@ -38,6 +41,9 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
+                <Route exact path="/admin/empleados/lista" component={ListaEmpleados}/>
+                <Route exact path="/admin/empleados/registro" component={RegistroEmpleado}/>
+                <Route exact path="/admin/empleados" component={MenuEmpleados}/>
                 <Route exact path="/admin/contabilidad" component={MenuContabilidad}/>
                 <Route exact path="/admin/login" component={LoginAdmin}/>
                 <Route exact path="/admin" component={MenuAdmin}/>

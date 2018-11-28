@@ -3,7 +3,7 @@ import './menu.css';
 
 import NavigationAdmin from './navigationAdmin.js';
 
-export default class MenuAlumnos extends Component {
+export default class MenuEmpleados extends Component {
   constructor(props) {
     super(props);
 
@@ -22,17 +22,17 @@ export default class MenuAlumnos extends Component {
         <div class="elementos">
           <div class="itemfullMenuAlumnos">
             <div class="item">
-              <h3>Agregar alumno</h3>
-              <p>Aquí podras registrar a un nuevo alumno</p>
-              <a href="/admin/alumnos/registro" class="btn btn-outline-light">Ir</a>
+              <h3>Agregar empleado</h3>
+              <p>Aquí podras registrar a un nuevo empleado</p>
+              <a href="/admin/empleados/registro" class="btn btn-outline-light">Ir</a>
             </div>
           </div>
 
           <div class="itemfullMenuAlumnos">
             <div class="item">
-              <h3>Grupos</h3>
-              <p>Aquí podras ver todos los grupos e ingresar para ver y editar a los alumnos registrados</p>
-              <a href="/admin/alumnos/grupos" class="btn btn-outline-light">Ir</a>
+              <h3>Lista de empleados</h3>
+              <p>Aquí podras ver a todos los empleados a detalle</p>
+              <a href="/admin/empleados/lista" class="btn btn-outline-light">Ir</a>
             </div>
           </div>
 

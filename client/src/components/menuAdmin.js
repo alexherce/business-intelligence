@@ -30,6 +30,14 @@ export default class MenuAdmin extends Component {
 
           <div class="itemfullMenuAlumnos">
             <div class="item">
+              <h3>Empleados</h3>
+              <p>Aquí podras dar de alta a nuevos empleados, ver sus detalles</p>
+              <a href="/admin/empleados" class="btn btn-outline-light">Ir</a>
+            </div>
+          </div>
+
+          <div class="itemfullMenuAlumnos">
+            <div class="item">
               <h3>Contabilidad</h3>
               <p>Aquí podras ver el balance de dinero y registrar nuevos pagos</p>
               <a href="/admin/contabilidad" class="btn btn-outline-light">Ir</a>

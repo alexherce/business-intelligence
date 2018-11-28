@@ -42,6 +42,9 @@ export default class NavigationAdmin extends Component {
                         <a class="nav-link" href="/admin/alumnos">Alumnos</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/admin/empleados">Empleados</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/admin/contabilidad">Contabilidad</a>
                     </li>
                 </ul>

@@ -3,7 +3,7 @@ import './menu.css';
 
 import NavigationAdmin from './navigationAdmin.js';
 
-export default class RegistroAlumno extends Component {
+export default class RegistroEmpleado extends Component {
   constructor(props) {
     super(props);
 
@@ -17,14 +17,14 @@ export default class RegistroAlumno extends Component {
       <div>
         <NavigationAdmin/>
         <br/>
-        <h2 className="text-center">Registro de alumno</h2>
+        <h2 className="text-center">Registro de empleado</h2>
             <div class="elementos">
               <div class="itemfullRegistro identificadorForm">
               <form method="POST">
                 <br/>
-                  <label for="fname">CURP</label>
+                  <label for="fname">Email</label>
                   <br/>
-                  <input type="text" id="fid" name="CURP" placeholder="CURP.."/>
+                  <input type="text" id="fid" name="email" placeholder="Email.."/>
                   <br/>
                   <label for="fnombre">Nombre(s)</label>
                   <br/>
@@ -38,13 +38,17 @@ export default class RegistroAlumno extends Component {
                   <br/>
                   <input type="text" id="fmaterno" name="Materno" placeholder="Apellido Materno.."/>
                   <br/>
-                  <label for="ffecha">Fecha de nacimiento</label>
+                  <label for="ffecha">Posición</label>
                   <br/>
-                  <input type="text" id="ffecha" name="Fecha" placeholder="Fecha de nacimiento.."/>
+                  <input type="text" id="ffecha" name="Fecha" placeholder="Posición.."/>
                   <br/>
-                  <label for="falergias">Alergias</label>
+                  <label for="fsalario">Salario</label>
                   <br/>
-                  <input type="text" id="falergias" name="alergias" placeholder="Alergias.."/>
+                  <input type="text" id="fsalario" name="salario" placeholder="Salario.."/>
+                  <br/>
+                  <label for="ftelefono">Teléfono</label>
+                  <br/>
+                  <input type="text" id="ftelefono" name="telefono" placeholder="Telefono.."/>
                   <br/>
                   <label for="fcontrasena">Contraseña</label>
                   <br/>
