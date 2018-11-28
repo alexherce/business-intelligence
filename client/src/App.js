@@ -46,7 +46,7 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/grupos/detalle/:id" component={DetalleGrupo}/>
                 <Route exact path="/admin/alumnos/calificaciones/detalle/:id" component={CalificacionesAdmin}/>
                 <Route exact path="/admin/alumnos/calificaciones/nuevo/:id" component={RegistroCalificacion}/>
-                <Route exact path="/admin/alumnos/grupos/agregar" component={GrupoAlumno}/>
+                <Route exact path="/admin/alumnos/grupos/agregar/:id" component={GrupoAlumno}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
