@@ -8,7 +8,7 @@ export default class MenuAdmin extends Component {
     super(props);
 
     this.state = {
-      infoEstudiante: {
+      infoEmpleado: {
         nombre: '',
         apellido_paterno: ''
       },
