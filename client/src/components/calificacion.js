@@ -33,6 +33,32 @@ export default class RegistroCalificacion extends Component {
     });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    this.setState({ loading: true });
+
+    fetch('/api/boletas/crear', {
+      method: 'post',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify({
+        "id_estudiante": this.props.match.params.id,
+        "id_materia": event.target.materia.value,
+        "id_trimestre": event.target.trimestre.value,
+        "calificacion": event.target.calificacion.value
+      })
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res.success) return this.setState({ loading: false, success: true, message: 'Calificacion Añadida!'});
+      console.log(res);
+      this.setState({ loading: false, error: true, message: res.error});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
   Loading = () => {
     return(
       <div>
@@ -58,7 +84,7 @@ export default class RegistroCalificacion extends Component {
           <br/>
           <input type="text" id="calificacion" name="calificacion" placeholder="Calificación.." required/>
           <br/>
-          <input type="submit" value="Inscribir"/>
+          <input type="submit" value="Agregar Calificacion"/>
           <br/>
 
           {this.state.error ? (
@@ -82,7 +108,7 @@ export default class RegistroCalificacion extends Component {
       <div>
         <NavigationAdmin/>
         <br/>
-        <h2 className="text-center">Registro de alumno</h2>
+        <h2 className="text-center">Agregar Nueva Calificacion</h2>
         <div class="elementos">
           <div class="itemfullRegistro identificadorForm">
             <this.RenderContent/>

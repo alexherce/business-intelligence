@@ -72,6 +72,8 @@ export default class CalificacionesAdmin extends Component {
   Table = () => {
     return(
       <div>
+        <center><a class="btn btn-success margenes" href={'/admin/alumnos/calificaciones/nuevo/' + this.props.match.params.id}>Agregar Calificacion</a></center>
+        <br/>
         <table className="table tableDiv">
           <thead>
             <tr>
@@ -89,6 +91,7 @@ export default class CalificacionesAdmin extends Component {
             {this.state.calificaciones.map((item:string,i:number)=><CalificacionesItemAdmin item={item} califs={JSON.parse(item.calificaciones)} key={i}/>)}
           </tbody>
         </table>
+        <br/>
       </div>
     );
   }
