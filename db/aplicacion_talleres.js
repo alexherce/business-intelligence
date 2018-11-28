@@ -83,7 +83,7 @@ exports.getId = function(id, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT a.id_aplicacion, a.id_estudiante, a.titulo, a.texto, a.estado, t.nombre AS taller, e.nombre, e.apellido_paterno, e.apellido_materno FROM aplicacion_taller AS a JOIN taller AS t ON a.id_taller = t.id_taller JOIN estudiante AS e ON a.id_estudiante = e.id_estudiante WHERE a.id_aplicacion = ?", [id], function (err, result) {
+      connection.query("SELECT a.id_aplicacion, a.id_estudiante, a.titulo, a.texto, a.estado, t.nombre AS taller, e.curp, e.nombre, e.apellido_paterno, e.apellido_materno FROM aplicacion_taller AS a JOIN taller AS t ON a.id_taller = t.id_taller JOIN estudiante AS e ON a.id_estudiante = e.id_estudiante WHERE a.id_aplicacion = ?", [id], function (err, result) {
         connection.release();
         if (err) return done(err);
 
@@ -116,7 +116,7 @@ exports.getAll = function(done) {
   db.get(db.READ, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("SELECT a.id_aplicacion, a.id_estudiante, a.titulo, a.estado, t.nombre AS taller, e.nombre, e.apellido_paterno, e.apellido_materno FROM aplicacion_taller AS a JOIN taller AS t ON a.id_taller = t.id_taller JOIN estudiante AS e ON a.id_estudiante = e.id_estudiante", function (err, result) {
+    connection.query("SELECT a.id_aplicacion, a.id_estudiante, a.titulo, a.estado, t.nombre AS taller, e.curp, e.nombre, e.apellido_paterno, e.apellido_materno FROM aplicacion_taller AS a JOIN taller AS t ON a.id_taller = t.id_taller JOIN estudiante AS e ON a.id_estudiante = e.id_estudiante", function (err, result) {
       connection.release();
       if (err) return done(err);
 
