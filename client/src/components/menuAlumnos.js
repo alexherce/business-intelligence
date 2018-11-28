@@ -55,7 +55,7 @@ export default class MenuAlumnos extends Component {
             <div class="item">
               <h3>Lista de alumnos</h3>
               <p>Aquí podras ver todos los alumnos</p>
-              <a href="/admin/alumnos/registro" class="btn btn-outline-light">Ir</a>
+              <a href="/admin/alumnos/lista" class="btn btn-outline-light">Ir</a>
             </div>
           </div>
 

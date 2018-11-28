@@ -19,6 +19,7 @@ import EstadoCuentaAdmin from './components/estadoCuentaAdmin.js';
 import RegistroEmpleado from './components/registroEmpleado.js';
 import ListaGrupos from './components/listaGrupos.js';
 import ListaEmpleados from './components/listaEmpleados.js';
+import ListaAlumnos from './components/listaAlumnos.js';
 import DetalleEmpleado from './components/detalleEmpleado.js';
 import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
@@ -50,6 +51,7 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>
+                <Route exact path="/admin/alumnos/lista" component={ListaAlumnos}/>
 
                 <Route exact path="/admin/empleados/lista/detalle/:id" component={DetalleEmpleado}/>
                 <Route exact path="/admin/empleados/lista" component={ListaEmpleados}/>
