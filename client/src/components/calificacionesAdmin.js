@@ -9,7 +9,7 @@ export default class CalificacionesAdmin extends Component {
     super(props);
 
     this.state = {
-      infoEstudiante: {
+      infoEmpleado: {
         nombre: '',
         apellido_paterno: ''
       },
@@ -30,7 +30,7 @@ export default class CalificacionesAdmin extends Component {
       if (res) {
         if (!res.success) return this.props.history.push("/admin/login");
 
-        this.setState({ infoEstudiante: res.infoEstudiante }, () => {
+        this.setState({ infoEmpleado: res.infoEmpleado }, () => {
           console.log(this.state);
 
           this.getCalificaciones();
@@ -110,7 +110,7 @@ export default class CalificacionesAdmin extends Component {
     return (
       <div>
         <NavigationBar/>
-        <h2 className="alumnoName">Calificaciones de {this.state.infoEstudiante.nombre} {this.state.infoEstudiante.apellido_paterno}</h2>
+        <h2 className="alumnoName">Calificaciones de alumno: {this.props.match.params.id}</h2>
         <br/>
         <this.RenderContent/>
       </div>
