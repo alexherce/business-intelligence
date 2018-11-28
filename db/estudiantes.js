@@ -13,6 +13,14 @@ exports.create = function(params, done) {
 
   let values = [];
 
+  if (params.curp && !validator.isEmpty(params.curp)) {
+    if (!validator.isAlphanumeric(params.curp)) return done('El curp debe contener solo letras y numeros');
+    if (!validator.isLength(params.curp, {min: 18, max: 18})) return done('El curp debe tener 18 caracteres');
+    values.push(params.curp.toUpperCase());
+  } else {
+    return done('Parámetro requerido: curp');
+  }
+
   if (params.nombre && !validator.isEmpty(params.nombre)) {
     if (!validator.isAlpha(params.nombre)) return done('El nombre debe contener solo letras');
     if (!validator.isLength(params.nombre, {min: 2, max: 32})) return done('El nombre debe tener entre 2 y 32 caracteres');
@@ -87,7 +95,7 @@ exports.create = function(params, done) {
   db.get(db.WRITE, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("INSERT INTO estudiante (nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento, password, alergias) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", values, function (err, result) {
+    connection.query("INSERT INTO estudiante (curp, nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento, password, alergias) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", values, function (err, result) {
       connection.release();
       if (err && err.code == 'ER_DUP_ENTRY') {
         return done("El estudiante ya está registrado");
@@ -105,9 +113,10 @@ exports.login = function(id, password, done) {
   let values = [];
 
   if (id && !validator.isEmpty(id)) {
-    if (!validator.isInt(id, { min: 1, max: 9999, allow_leading_zeroes: false })) return done('El id no es válido');
+    if (!validator.isAlphanumeric(id)) return done('El curp debe contener solo letras y numeros');
+    if (!validator.isLength(id, {min: 18, max: 18})) return done('El curp debe tener 18 caracteres');
   } else {
-    return done('Parámetro requerido: id de estudiante');
+    return done('Parámetro requerido: curp');
   }
 
   if (password && !validator.isEmpty(password)) {
@@ -119,7 +128,7 @@ exports.login = function(id, password, done) {
   db.get(db.READ, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("SELECT * FROM estudiante WHERE id_estudiante = ?", [id], function (err, result) {
+    connection.query("SELECT * FROM estudiante WHERE curp = ?", [id], function (err, result) {
       connection.release();
       if (err) return done(err);
 
@@ -134,7 +143,8 @@ exports.login = function(id, password, done) {
               id_estudiante: result[0].id_estudiante,
               nombre: result[0].nombre,
               apellido_paterno: result[0].apellido_paterno,
-              apellido_materno: result[0].apellido_materno
+              apellido_materno: result[0].apellido_materno,
+              curp: result[0].curp
             });
           } else {
             return done("Contraseña incorrecta.");
@@ -151,7 +161,7 @@ exports.getAll = function(done) {
   db.get(db.READ, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("SELECT id_estudiante, nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento FROM estudiante", function (err, result) {
+    connection.query("SELECT id_estudiante, curp, nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento FROM estudiante", function (err, result) {
       connection.release();
       if (err) return done(err);
 
@@ -172,7 +182,7 @@ exports.getId = function(userId, done) {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento, alergias FROM estudiante WHERE id_estudiante = ?", [userId], function (err, result) {
+      connection.query("SELECT nombre, curp, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento, alergias FROM estudiante WHERE id_estudiante = ?", [userId], function (err, result) {
         connection.release();
         if (err) return done(err);
 
@@ -180,6 +190,7 @@ exports.getId = function(userId, done) {
           return done(null, {
             success: true,
             id_estudiante: result[0].id_estudiante,
+            curp: result[0].curp,
             nombre: result[0].nombre,
             apellido_paterno: result[0].apellido_paterno,
             apellido_materno: result[0].apellido_materno,
@@ -199,11 +210,11 @@ exports.getId = function(userId, done) {
 }
 
 exports.getQuery = function(param, id, done) {
-  if (id && param == 'nombre' || param == 'apellido_materno' || param == "apellido_paterno" || param == "dia_nacimiento" || param == "mes_nacimiento"  || param == "año_nacimiento") {
+  if (id && param == 'curp' || param == 'nombre' || param == 'apellido_materno' || param == "apellido_paterno" || param == "dia_nacimiento" || param == "mes_nacimiento"  || param == "año_nacimiento") {
     db.get(db.READ, function(err, connection) {
       if (err) return abort(connection, done, err);
 
-      connection.query("SELECT nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento FROM estudiante WHERE " + param + " = ?", [id], function (err, result) {
+      connection.query("SELECT curp, nombre, apellido_paterno, apellido_materno, dia_nacimiento, mes_nacimiento, año_nacimiento FROM estudiante WHERE " + param + " = ?", [id], function (err, result) {
         connection.release();
         if (err) return done(err);
 
