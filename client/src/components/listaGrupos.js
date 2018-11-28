@@ -76,6 +76,7 @@ export default class ListaGrupos extends Component {
               <th scope = "col" > Grado </th>
               <th scope = "col" > Grupo </th>
               <th scope = "col" > Año escolar </th>
+              <th scope = "col" > Profesor </th>
               <th scope = "col" > Acciones </th>
             </tr>
           </thead>
