@@ -12,6 +12,29 @@ export default class Menu extends Component {
     };
   }
 
+  componentDidMount() {
+    this.isLoggedIn();
+  }
+
+  isLoggedIn = () => {
+    fetch('/api/sesion/alumno')
+    .then(res => res.json())
+    .then((res) => {
+      if (res) {
+        if (!res.success) return this.props.history.push("/alumnos/login");
+
+        this.setState({ infoEstudiante: res.infoEstudiante }, () => {
+          console.log(this.state);
+        });
+      } else {
+        this.props.history.push("/alumnos/login");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
         var nombre = "Nombre del alumno";
     return (

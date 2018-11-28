@@ -22,18 +22,28 @@ function loggedInEstudiante(req, res, next) {
   next();
 }
 
-router.get('/passwords', (req, res) => {
-  const count = 5;
+router.get('/sesion/alumno', function(req, res, next) {
+  if(req.session.id_estudiante && req.session.id) {
+    res.status(200).send({
+      success: true,
+      id_estudiante: req.session.id_estudiante,
+      infoEstudiante: req.session.infoEstudiante
+    });
+  } else {
+    res.status(401).send({success: false, error: 'No se encontro sesion de estudiante'});
+  }
+});
 
-  // Generate some passwords
-  const passwords = Array.from(Array(count).keys()).map(i =>
-    generatePassword(12, false)
-  )
-
-  // Return them as json
-  res.json(passwords);
-
-  console.log(`Sent ${count} passwords`);
+router.get('/sesion/empleado', function(req, res, next) {
+  if(req.session.id_empleado && req.session.id) {
+    res.status(200).send({
+      success: true,
+      id_empleado: req.session.id_empleado,
+      infoEmpleado: req.session.infoEmpleado
+    });
+  } else {
+    res.status(401).send({success: false, error: 'No se encontro sesion de empleado'});
+  }
 });
 
 // EMPLEADOS
