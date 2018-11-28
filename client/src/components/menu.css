@@ -56,7 +56,7 @@
     color: white;
 }
 
-.identificadorForm input[type=text], select, input[type=email], textarea {
+.identificadorForm input[type=text], input[type=password], select, input[type=email], textarea {
     color: white;
     width: 90%;
     height: auto;
@@ -79,14 +79,14 @@
     border: none;
 }
 
-.identificadorForm input[type=text]::placeholder, input[type=email]::placeholder, textarea[type=text]::placeholder {
+.identificadorForm input[type=text]::placeholder, input[type=password]::placeholder, input[type=email]::placeholder, textarea[type=text]::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(236, 240, 241, 0.8);
     opacity: 1;
     /* Firefox */
 }
 
-.identificadorForm input[type=text]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, textarea[type=text]:-ms-input-placeholder {
+.identificadorForm input[type=text]:-ms-input-placeholder, input[type=password]:-ms-input-placeholder, input[type=email]:-ms-input-placeholder, textarea[type=text]:-ms-input-placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgba(236, 240, 241, 0.8);
     opacity: 1;
@@ -94,7 +94,7 @@
 }
 
 @media screen and (max-width: 345px) {
-    .identificadorForm input[type=text], select, input[type=email], textarea {
+    .identificadorForm input[type=text], input[type=password], select, input[type=email], textarea {
         width: 90vw;
     }
 
@@ -112,7 +112,7 @@
     overflow: hidden;
 }
 
-.identificadorForm input[type=text]:focus, input[type=email]:focus, textarea:focus {
+.identificadorForm input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
     background-color: rgba(90, 186, 226, 0.700);
 }
 

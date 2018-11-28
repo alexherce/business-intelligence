@@ -69,19 +69,15 @@ export default class Login extends Component {
       <div>
         <form className="form-signin" onSubmit={this.handleLoginSubmit}>
           <div className="form-label-group">
-            <h4 className="titles">Matricula</h4>
+            <h4 className="titles">CURP</h4>
             <input type="text" id="username" className="form-control" required autoFocus/>
           </div>
 
           <div className="form-label-group">
-            <h4 className="titles" >Contraseña</h4>
-            <input type="password" id="password" className="form-control" required/>
+            <h4 className="titles">Contraseña</h4>
+            <input type="text" id="password" className="form-control" required autoFocus/>
           </div>
-
-          <div className="custom-control custom-checkbox mb-3">
-            <input type="checkbox" className="custom-control-input" id="customCheck1"/>
-            <label className="custom-control-label" htmlFor="customCheck1">Recordar contraseña</label>
-          </div>
+          <br/>
           <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
         </form>
         {this.state.error ? (

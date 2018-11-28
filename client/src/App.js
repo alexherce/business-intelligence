@@ -15,6 +15,7 @@ import MenuAlumnos from './components/menuAlumnos.js';
 import MenuContabilidad from './components/menuContabilidad.js';
 import RegistroAlumno from './components/registro.js';
 import ListaGrupos from './components/listaGrupos.js';
+import DetalleGrupo from './components/detalleGrupo.js';
 
 class App extends Component {
   // Initialize state
@@ -32,6 +33,7 @@ class App extends Component {
           <div>
             <Switch>
                 //ADMIN
+                <Route exact path="/admin/alumnos/grupos/detalle" component={DetalleGrupo}/>
                 <Route exact path="/admin/alumnos/grupos" component={ListaGrupos}/>
                 <Route exact path="/admin/alumnos/registro" component={RegistroAlumno}/>
                 <Route exact path="/admin/alumnos" component={MenuAlumnos}/>

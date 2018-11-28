@@ -46,6 +46,14 @@ export default class RegistroAlumno extends Component {
                   <br/>
                   <input type="text" id="falergias" name="alergias" placeholder="Alergias.."/>
                   <br/>
+                  <label for="fcontrasena">Contraseña</label>
+                  <br/>
+                  <input type="password" id="fcontrasena" name="contrasena" placeholder="Contraseña.."/>
+                  <br/>
+                  <label for="falergias">Confirmacion de contraseña</label>
+                  <br/>
+                  <input type="password" id="falergias" name="alergias" placeholder="Confirmación de contraseña.."/>
+                  <br/>
                   <input type="submit" value="Enviar"/>
               </form>
               </div>
