@@ -66,7 +66,7 @@ export default class MenuAdmin extends Component {
             <div class="item">
               <h3>Aplicaciones a Talleres</h3>
               <p>Aquí podras ver aplicaciones a talleres</p>
-              <a href="/admin/aplicaciones_talleres" class="btn btn-outline-light">Ir</a>
+              <a href="/admin/alumnos/aplicaciones_talleres" class="btn btn-outline-light">Ir</a>
             </div>
           </div>
 

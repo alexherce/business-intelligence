@@ -39,7 +39,7 @@ export default class ListaAplicaciones extends Component {
   }
 
   getDatos = () => {
-    fetch('/api/aplicaciones_talleres/list', {
+    fetch('/api/aplicacion_talleres/list', {
       method: 'get',
       headers: new Headers({'Content-Type': 'application/json'})
     })
