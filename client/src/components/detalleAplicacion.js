@@ -61,7 +61,7 @@ export default class DetalleAplicacion extends Component {
       if (!res.success) return this.setState({ loading: false, error: true, message: res.error});
 
       this.setState({ loading: false, success: true, aplicacion: res }, () => {
-        var temp = aplicacion.evaluacion.split("|");
+        var temp = res.evaluacion.split("|");
         console.log(temp);
         this.setState({ loading: false, success: true, evaluacionArreglo: temp });
       });
