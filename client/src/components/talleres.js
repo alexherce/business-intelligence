@@ -24,7 +24,7 @@ export default class AplicacionTalleres extends Component {
         if (!res.success) return this.props.history.push("/alumnos/login");
 
         this.setState({ infoEstudiante: res.infoEstudiante }, () => {
-          console.log(this.state);          
+          console.log(this.state);
         });
       } else {
         this.props.history.push("/alumnos/login");
@@ -35,8 +35,76 @@ export default class AplicacionTalleres extends Component {
     });
   }
 
-  render() {
+  handleSubmit = (event) => {
+    event.preventDefault();
 
+    this.setState({ loading: true });
+
+    fetch('/api/aplicacion_talleres/crear', {
+      method: 'post',
+      headers: new Headers({'Content-Type': 'application/json'}),
+      body: JSON.stringify({
+        "texto": event.target.texto.value,
+        "id_taller": event.target.taller.value,
+        "id_estudiante": this.state.infoEstudiante.id_estudiante,
+        "titulo": event.target.titulo.value
+      })
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res.success) return this.setState({ loading: false, success: true, message: 'Aplicacion Enviada!'});
+      console.log(res);
+      this.setState({ loading: false, error: true, message: res.error});
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
+
+  Loading = () => {
+    return(
+      <div>
+        <center><div class="loader"></div></center>
+      </div>
+    );
+  }
+
+  FormDisplay = () => {
+    return(
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label for="titulo">Titulo</label>
+          <input type="text" id="titulo" name="titulo" placeholder="Titulo.." required/>
+          <br/>
+          <div class="input-group marginTop">
+            <select class="custom-select" id="taller">
+              <option selected>Escoge el taller al que quieras aplicar...</option>
+              <option value="3">Taller de Escritura</option>
+              <option value="4">Taller de Matematicas</option>
+            </select>
+          </div>
+          <br/>
+          <textarea class="form-control" id="texto" rows="20"></textarea>
+          <button type="button" class="btn btn-outline-light marginTop">Aplicar</button>
+          <br/>
+
+          {this.state.error ? (
+            <h5 className="text-danger text-center">{this.state.message}</h5>
+          ) : null }
+          {this.state.success ? (
+            <h5 className="text-success text-center">{this.state.message}</h5>
+          ) : null }
+        </form>
+      </div>
+    );
+  }
+
+  RenderContent = () => {
+    if (this.state.loading) return <this.Loading/>;
+    return <this.FormDisplay/>;
+  }
+
+  render() {
     return (
       <div>
         <NavigationBar/>
@@ -44,27 +112,9 @@ export default class AplicacionTalleres extends Component {
         <div class="containerTaller">
           <div class="itemTalleres">
             <h3>Aplica a un taller</h3>
-            <div class="input-group marginTop">
-              <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                <option selected>Escoge el taller al que quieras aplicar...</option>
-                <option value="1">Taller 1</option>
-                <option value="2">Taller 2</option>
-                <option value="3">Taller 3</option>
-                <option value="4">Taller 4</option>
-                <option value="5">Taller 5</option>
-              </select>
-              <div class="input-group-append">
-                <button class="btn btn-outline-light" type="button">Button</button>
-              </div>
-            </div>
-            <br/>
-
-            <textarea class="form-control" rows="10"></textarea>
-
-            <button type="button" class="btn btn-outline-light marginTop">Aplicar</button>
+            <this.RenderContent/>
           </div>
         </div>
-
       </div>
     );
   }
