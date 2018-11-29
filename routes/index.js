@@ -177,6 +177,10 @@ router.post('/aplicacion_talleres/crear', loggedInEstudiante, function(req, res,
   aplicacionesController.create(req, res);
 });
 
+router.post('/aplicacion_talleres/personality', function(req, res, next) {
+  aplicacionesController.personality(req, res);
+});
+
 router.get('/aplicacion_talleres/detalle/:id', loggedInEmpleado, function(req, res, next) {
   aplicacionesController.getAplicacion(req, res);
 });

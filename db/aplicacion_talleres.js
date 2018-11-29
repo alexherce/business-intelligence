@@ -7,6 +7,12 @@ function abort(connection, done, error) {
   done(error);
 }
 
+var personalityInsights = new PersonalityInsightsV3({
+  version_date: '2017-10-13',
+  username: 'e70cff6f-3b64-4599-8578-d812f250ece8',
+  password: 'cnElKycCTxZN'
+});
+
 exports.create = function(params, id, done) {
 
   let values = [];
@@ -38,10 +44,28 @@ exports.create = function(params, id, done) {
     return done('Parámetro requerido: id del taller');
   }
 
+  var profileParams = {
+    // Get the content from the JSON file.
+    content: JSON.stringify(req.body.text),
+    content_type: 'text/plain',
+    consumption_preferences: true,
+    content_language: 'es',
+    accept_language: 'es',
+    raw_scores: true
+  };
+
+  personalityInsights.profile(profileParams, function(error, profile) {
+    if (error) {
+      values.push(" ");
+    } else {
+      values.push(ibmToString(ibm.deleteShit(profile)));
+    }
+  });
+
   db.get(db.WRITE, function(err, connection) {
     if (err) return abort(connection, done, err);
 
-    connection.query("INSERT INTO aplicacion_taller (titulo, texto, id_estudiante, id_taller) VALUES (?, ?, ?, ?)", values, function (err, result) {
+    connection.query("INSERT INTO aplicacion_taller (titulo, texto, id_estudiante, id_taller, evaluacion) VALUES (?, ?, ?, ?, ?)", values, function (err, result) {
       connection.release();
       if (err) {
         if (err.code == 'ER_NO_REFERENCED_ROW_2' || err.code == 'ER_NO_REFERENCED_ROW') return done("ID de taller o ID de estudiante");
