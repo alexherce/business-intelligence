@@ -9,6 +9,15 @@ function abort(connection, done, error) {
   done(error);
 }
 
+var ibmToString = function(data) {
+  let result = "";
+  for (var key in data) {
+
+    result += key + ": " + ((data[key].N) * 100).toFixed(2) + "% | ";
+  }
+  return result;
+}
+
 var personalityInsights = new PersonalityInsightsV3({
   version_date: '2017-10-13',
   username: 'e70cff6f-3b64-4599-8578-d812f250ece8',
