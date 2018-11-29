@@ -3,6 +3,7 @@
     height: auto;
     width: 100vw;
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     flex-direction: row;
     justify-content: space-around;
@@ -11,6 +12,7 @@
 .itemfull {
     min-height: 200px;
     width: 300px;
+    flex-wrap: wrap;
     align-content: center;
     background-color: #5bc0de;
     border-radius: 12px;
