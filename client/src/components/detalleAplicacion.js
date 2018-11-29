@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './menu.css';
 
 import NavigationAdmin from './navigationAdmin.js';
+import EvaluacionItem from './evaluacion_item.js';
 
 export default class DetalleAplicacion extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ export default class DetalleAplicacion extends Component {
           apellido_paterno: '',
           apellido_materno: ''
         }
-      }
+      },
+      evaluacion: []
     };
   }
 
@@ -58,7 +60,11 @@ export default class DetalleAplicacion extends Component {
     .then((res) => {
       if (!res.success) return this.setState({ loading: false, error: true, message: res.error});
 
-      this.setState({ loading: false, success: true, aplicacion: res });
+      this.setState({ loading: false, success: true, aplicacion: res }, () => {
+        var temp = aplicacion.evaluacion.split("|");
+        console.log(temp);
+        this.setState({ loading: false, success: true, evaluacionArreglo: temp });
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -92,7 +98,9 @@ export default class DetalleAplicacion extends Component {
           <h5>{this.state.aplicacion.estudiante.nombre} {this.state.aplicacion.estudiante.apellido_paterno} {this.state.aplicacion.estudiante.apellido_materno}</h5>
           <br/>
           <h2>Evaluacion</h2>
-          <h5>{this.state.aplicacion.evaluacion}</h5>
+          <center>
+            {this.state.evaluacion.map((item:string,i:number)=><EvaluacionItem item={item} key={i}/>)}
+          </center>
           <br/>
           <h2>Texto</h2>
           <h5>{this.state.aplicacion.texto}</h5>
