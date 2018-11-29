@@ -27,7 +27,7 @@ exports.create = function(params, id, done) {
   }
 
   if (params.texto && !validator.isEmpty(params.texto)) {
-    if (!validator.isLength(params.texto, {min: 2, max: 3000})) return done('El campo texto debe tener entre 2 y 3000 caracteres');
+    if (!validator.isLength(params.texto, {min: 2, max: 50000})) return done('El campo texto debe tener entre 2 y 3000 caracteres');
     values.push(params.texto);
   } else {
     return done('Parámetro requerido: texto');
