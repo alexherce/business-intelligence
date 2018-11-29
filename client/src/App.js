@@ -28,6 +28,8 @@ import RegistroMateria from './components/registroMateria.js';
 import RegistroGrupo from './components/registroGrupo.js';
 import GrupoAlumno from './components/grupoAlumno.js';
 import DetalleGrupo from './components/detalleGrupo.js';
+import DetalleAplicacion from './components/detalleAplicacion.js';
+import ListaAplicaciones from './components/listaAplicaciones.js';
 import LoginAdmin from './components/login_admin.js';
 import CalificacionesAdmin from './components/calificacionesAdmin.js';
 import RegistroCalificacion from './components/calificacion.js';
@@ -62,6 +64,8 @@ class App extends Component {
                 <Route exact path="/admin/alumnos/lista/detalle/:id" component={DetalleAlumno}/>
                 <Route exact path="/admin/alumnos/materias" component={ListaMaterias}/>
                 <Route exact path="/admin/alumnos/materias/detalle/:id" component={DetalleMateria}/>
+                <Route exact path="/admin/alumnos/aplicaciones_talleres" component={ListaAplicaciones}/>
+                <Route exact path="/admin/alumnos/aplicaciones_talleres/detalle/:id" component={DetalleAplicacion}/>
                 <Route exact path="/admin/alumnos/materias/nueva" component={RegistroMateria}/>
 
                 <Route exact path="/admin/contabilidad" component={Contabilidad}/>
