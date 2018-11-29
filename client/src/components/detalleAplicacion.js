@@ -26,7 +26,7 @@ export default class DetalleAplicacion extends Component {
           apellido_materno: ''
         }
       },
-      evaluacion: []
+      evaluacionArreglo: []
     };
   }
 
@@ -99,7 +99,7 @@ export default class DetalleAplicacion extends Component {
           <br/>
           <h2>Evaluacion</h2>
           <center>
-            {this.state.evaluacion.map((item:string,i:number)=><EvaluacionItem item={item} key={i}/>)}
+            {this.state.evaluacionArreglo.map((item:string,i:number)=><EvaluacionItem item={item} key={i}/>)}
           </center>
           <br/>
           <h2>Texto</h2>
