@@ -48,7 +48,7 @@ exports.create = function(params, id, done) {
 
   var profileParams = {
     // Get the content from the JSON file.
-    content: JSON.stringify(req.body.text),
+    content: JSON.stringify(params.texto),
     content_type: 'text/plain',
     consumption_preferences: true,
     content_language: 'es',
