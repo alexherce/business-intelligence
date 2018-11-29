@@ -1,6 +1,8 @@
 const validator = require('validator');
-
 const db = require('./mysql.js');
+const ibm = require('./parse_ibm.js');
+
+const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 
 function abort(connection, done, error) {
   connection.release();
