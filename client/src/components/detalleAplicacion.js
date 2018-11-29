@@ -62,7 +62,6 @@ export default class DetalleAplicacion extends Component {
 
       this.setState({ loading: false, success: true, aplicacion: res }, () => {
         var temp = res.evaluacion.split("|");
-        console.log(temp);
         this.setState({ loading: false, success: true, evaluacionArreglo: temp });
       });
     })
