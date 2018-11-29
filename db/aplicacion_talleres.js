@@ -130,6 +130,7 @@ exports.getId = function(id, done) {
             texto: result[0].texto,
             estado: result[0].estado,
             taller: result[0].taller,
+            evaluacion: result[0].evaluacion,
             estudiante: {
               id_estudiante: result[0].id_estudiante,
               nombre: result[0].nombre,
