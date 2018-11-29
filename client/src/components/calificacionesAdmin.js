@@ -72,7 +72,6 @@ export default class CalificacionesAdmin extends Component {
   Table = () => {
     return(
       <div>
-        <center><a class="btn btn-success margenes" href={'/admin/alumnos/calificaciones/nuevo/' + this.props.match.params.id}>Agregar Calificacion</a></center>
         <br/>
         <table className="table tableDiv">
           <thead>
@@ -115,6 +114,8 @@ export default class CalificacionesAdmin extends Component {
       <div>
         <NavigationAdmin/>
         <h2 className="alumnoName">Calificaciones de alumno: {this.props.match.params.id}</h2>
+        <br/>
+        <center><a class="btn btn-success margenes" href={'/admin/alumnos/calificaciones/nuevo/' + this.props.match.params.id}>Agregar Calificacion</a></center>
         <br/>
         <this.RenderContent/>
       </div>
