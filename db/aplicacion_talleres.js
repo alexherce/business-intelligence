@@ -58,25 +58,25 @@ exports.create = function(params, id, done) {
 
   personalityInsights.profile(profileParams, function(error, profile) {
     if (error) {
-      values.push(" ");
+      return done('Error en el registro de aplicacion');
     } else {
       values.push(ibmToString(ibm.deleteShit(profile)));
+
+      db.get(db.WRITE, function(err, connection) {
+        if (err) return abort(connection, done, err);
+
+        connection.query("INSERT INTO aplicacion_taller (titulo, texto, id_estudiante, id_taller, evaluacion) VALUES (?, ?, ?, ?, ?)", values, function (err, result) {
+          connection.release();
+          if (err) {
+            if (err.code == 'ER_NO_REFERENCED_ROW_2' || err.code == 'ER_NO_REFERENCED_ROW') return done("ID de taller o ID de estudiante");
+            if (err.code == 'ER_DUP_ENTRY') return done("Ya hay una aplicacion del alumno al taller seleccionado");
+            return done(err);
+          }
+          if (!result) return done('Error en el registro de aplicacion');
+          return done(null, result.insertId);
+        });
+      });
     }
-  });
-
-  db.get(db.WRITE, function(err, connection) {
-    if (err) return abort(connection, done, err);
-
-    connection.query("INSERT INTO aplicacion_taller (titulo, texto, id_estudiante, id_taller, evaluacion) VALUES (?, ?, ?, ?, ?)", values, function (err, result) {
-      connection.release();
-      if (err) {
-        if (err.code == 'ER_NO_REFERENCED_ROW_2' || err.code == 'ER_NO_REFERENCED_ROW') return done("ID de taller o ID de estudiante");
-        if (err.code == 'ER_DUP_ENTRY') return done("Ya hay una aplicacion del alumno al taller seleccionado");
-        return done(err);
-      }
-      if (!result) return done('Error en el registro de aplicacion');
-      return done(null, result.insertId);
-    });
   });
 };
 
