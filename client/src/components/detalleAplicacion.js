@@ -82,9 +82,6 @@ export default class DetalleAplicacion extends Component {
           <h2>Titulo</h2>
           <h5>{this.state.aplicacion.titulo}</h5>
           <br/>
-          <h2>Texto</h2>
-          <h5>{this.state.aplicacion.texto}</h5>
-          <br/>
           <h2>Estado</h2>
           <h5>{this.state.aplicacion.estado}</h5>
           <br/>
@@ -96,6 +93,9 @@ export default class DetalleAplicacion extends Component {
           <br/>
           <h2>Evaluacion</h2>
           <h5>{this.state.aplicacion.evaluacion}</h5>
+          <br/>
+          <h2>Texto</h2>
+          <h5>{this.state.aplicacion.texto}</h5>
           <br/>
         </div>
       </div>
