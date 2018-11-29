@@ -85,7 +85,7 @@ export default class AplicacionTalleres extends Component {
           </div>
           <br/>
           <textarea class="form-control" id="texto" rows="20"></textarea>
-          <button type="button" class="btn btn-outline-light marginTop">Aplicar</button>
+          <button type="submit" class="btn btn-outline-light marginTop">Aplicar</button>
           <br/>
 
           {this.state.error ? (
